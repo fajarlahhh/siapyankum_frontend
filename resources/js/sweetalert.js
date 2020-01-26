@@ -1,0 +1,2 @@
+
+window.swal = require('sweetalert');
