@@ -55,12 +55,13 @@ class PendapatsaranhukumController extends Controller
 			$pendapatsaranhukum->pendapat_saran_judul = $req->get('pendapat_saran_judul');
 			$pendapatsaranhukum->pendapat_saran_tanggal = Carbon::parse($req->get('pendapat_saran_tanggal'))->format('Y-m-d');
 			$pendapatsaranhukum->pendapat_saran_laporan_nomor = $req->get('pendapat_saran_laporan_nomor');
+			$pendapatsaranhukum->pendapat_saran_keterangan = $req->get('pendapat_saran_keterangan');
 			$pendapatsaranhukum->operator = Auth::user()->pengguna_nama;
             $pendapatsaranhukum->save();
 
             $proses = new PendapatSaranProses();
 			$proses->pendapat_saran_id = $pendapatsaranhukum->pendapat_saran_id;
-			$proses->pendapat_saran_proses_status = 'LAPORAN MASUK';
+			$proses->pendapat_saran_proses_status = $req->get('pendapat_saran_proses_status');
 			$proses->pendapat_saran_proses_deskripsi = $req->get('pendapat_saran_proses_deskripsi');
 			$proses->pendapat_saran_proses_tanggal = Carbon::parse($req->get('pendapat_saran_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
@@ -112,6 +113,7 @@ class PendapatsaranhukumController extends Controller
 			$pendapatsaranhukum->pendapat_saran_judul = $req->get('pendapat_saran_judul');
 			$pendapatsaranhukum->pendapat_saran_tanggal = Carbon::parse($req->get('pendapat_saran_tanggal'))->format('Y-m-d');
 			$pendapatsaranhukum->pendapat_saran_laporan_nomor = $req->get('pendapat_saran_laporan_nomor');
+			$pendapatsaranhukum->pendapat_saran_keterangan = $req->get('pendapat_saran_keterangan');
 			$pendapatsaranhukum->operator = Auth::user()->pengguna_nama;
 			$pendapatsaranhukum->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'pendapatsaranhukum')

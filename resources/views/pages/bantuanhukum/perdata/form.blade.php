@@ -46,15 +46,35 @@
                     <label class="control-label">Judul</label>
                     <input class="form-control" type="text" name="bantuan_hukum_judul" value="{{ $aksi == 'Edit'? $data->bantuan_hukum_judul: old('bantuan_hukum_judul') }}" required data-parsley-minlength="1" data-parsley-maxlength="250" autocomplete="off"  />
                 </div>
+				<div class="form-group">
+					<label class="control-label">Keterangan</label>
+					<textarea class="textarea form-control wysihtml5" name="bantuan_hukum_keterangan" rows="12">
+						{{ $aksi == 'Edit'? $data->bantuan_hukum_keterangan: old('bantuan_hukum_keterangan') }}
+					</textarea>
+				</div>
 				@if($aksi == 'Tambah')
                 <hr>
                 <div class="note note-secondary m-b-15">
-                    <h4><b>Detail Dalam Proses</b></h4>
-                    <div class="form-group">
-                        <textarea class="textarea form-control" id="wysihtml5" name="bantuan_hukum_proses_deskripsi" placeholder="Enter text ..." rows="12">
-                            {{ $aksi == 'Edit'? $data->bantuan_hukum_proses_deskripsi: old('bantuan_hukum_proses_deskripsi') }}
-                        </textarea>
-                    </div>
+					<h3>Input Status Awal</h3>
+					<hr>
+					<div class="form-group">
+						<label class="control-label">Status</label>
+						<select class="form-control selectpicker" style="width : 100%" name="bantuan_hukum_proses_status" id="bantuan_hukum_proses_status" data-style="btn-info" data-width="100%">
+							<option value="DALAM PROSES">DALAM PROSES</option>
+							<option value="PROSES SIDANG">PROSES SIDANG</option>
+							<option value="PUTUSAN SIDANG">PUTUSAN SIDANG</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Tanggal</label>
+						<input type="text" readonly required class="form-control" id="datepicker1" name="bantuan_hukum_proses_tanggal" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->bantuan_hukum_proses_tanggal: (old('bantuan_hukum_proses_tanggal')? old('bantuan_hukum_proses_tanggal'): now()))) }}"/>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Detail</label>
+						<textarea class="textarea form-control wysihtml5" name="bantuan_hukum_proses_deskripsi" placeholder="Enter text ..." rows="12">
+							{{ $aksi == 'Edit'? $data->bantuan_hukum_proses_deskripsi: old('bantuan_hukum_proses_deskripsi') }}
+						</textarea>
+					</div>
                 </div>
                 @endif
 			</div>

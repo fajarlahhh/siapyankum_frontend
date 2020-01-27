@@ -57,13 +57,14 @@ class PraperadilanController extends Controller
 			$praperadilan->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$praperadilan->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$praperadilan->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$praperadilan->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$praperadilan->bantuan_hukum_jenis = 'praperadilan';
 			$praperadilan->operator = Auth::user()->pengguna_nama;
             $praperadilan->save();
 
             $proses = new BantuanHukumProses();
 			$proses->bantuan_hukum_id = $praperadilan->bantuan_hukum_id;
-			$proses->bantuan_hukum_proses_status = 'DALAM PROSES';
+			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
 			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
@@ -115,6 +116,7 @@ class PraperadilanController extends Controller
 			$praperadilan->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$praperadilan->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$praperadilan->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$praperadilan->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$praperadilan->bantuan_hukum_jenis = 'praperadilan';
 			$praperadilan->operator = Auth::user()->pengguna_nama;
 			$praperadilan->save();
@@ -168,7 +170,7 @@ class PraperadilanController extends Controller
 			$proses->bantuan_hukum_id = $req->bantuan_hukum_id;
 			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
-			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
+			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_proses_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'praperadilan')

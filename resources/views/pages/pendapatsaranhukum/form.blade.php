@@ -40,18 +40,38 @@
                 </div>
 				<div class="form-group">
 					<label class="control-label">Tanggal</label>
-					<input type="text" readonly required class="form-control" id="datepicker1" name="pendapat_saran_tanggal"  value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->pendapat_saran_tanggal: (old('pendapat_saran_tanggal')? old('pendapat_saran_tanggal'): now()))) }}"/>
+					<input type="text" readonly required class="form-control datepicker" name="pendapat_saran_tanggal"  value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->pendapat_saran_tanggal: (old('pendapat_saran_tanggal')? old('pendapat_saran_tanggal'): now()))) }}"/>
 				</div>
                 <div class="form-group">
                     <label class="control-label">Judul</label>
                     <input class="form-control" type="text" name="pendapat_saran_judul" value="{{ $aksi == 'Edit'? $data->pendapat_saran_judul: old('pendapat_saran_judul') }}" required data-parsley-minlength="1" data-parsley-maxlength="250" autocomplete="off"  />
                 </div>
+				<div class="form-group">
+					<label class="control-label">Keterangan</label>
+					<textarea class="textarea form-control wysihtml5" name="pendapat_saran_keterangan" rows="12">
+						{{ $aksi == 'Edit'? $data->pendapat_saran_keterangan: old('pendapat_saran_keterangan') }}
+					</textarea>
+				</div>
 				@if($aksi == 'Tambah')
                 <hr>
                 <div class="note note-secondary m-b-15">
-                    <h4><b>Detail Laporan Masuk</b></h4>
+					<h3>Input Status Awal</h3>
+					<hr>
+					<div class="form-group">
+						<label class="control-label">Status</label>
+						<select class="form-control selectpicker" style="width : 100%" name="pendapat_saran_proses_status" id="pendapat_saran_proses_status" data-style="btn-info" data-width="100%">
+							<option value="LAPORAN MASUK">LAPORAN MASUK</option>
+							<option value="MASIH DALAM PROSES">MASIH DALAM PROSES</option>
+							<option value="PSH SELESAI DIKIRIM">PSH SELESAI DIKIRIM</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Tanggal</label>
+						<input type="text" readonly required class="form-control datepicker" name="pendapat_saran_proses_tanggal" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->pendapat_saran_proses_tanggal: (old('pendapat_saran_proses_tanggal')? old('pendapat_saran_proses_tanggal'): now()))) }}"/>
+					</div>
                     <div class="form-group">
-                        <textarea class="textarea form-control" id="wysihtml5" name="pendapat_saran_proses_deskripsi" placeholder="Enter text ..." rows="12">
+						<label class="control-label">Detail</label>
+                        <textarea class="textarea form-control wysihtml5" name="pendapat_saran_proses_deskripsi" rows="12">
                             {{ $aksi == 'Edit'? $data->pendapat_saran_proses_deskripsi: old('pendapat_saran_proses_deskripsi') }}
                         </textarea>
                     </div>
@@ -59,9 +79,7 @@
                 @endif
 			</div>
 			<div class="panel-footer">
-				@role('user|administrator')
 				<input type="submit" value="Simpan" class="btn btn-sm btn-success m-r-3"/>
-				@endrole
 	            <a href="{{ $back }}" class="btn btn-sm btn-danger">Batal</a>
 	            <div class="pull-right">
 					This page took {{ (microtime(true) - LARAVEL_START) }} seconds to render
@@ -86,7 +104,7 @@
 	<script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<script>
-        $('#wysihtml5').wysihtml5({
+        $('.wysihtml5').wysihtml5({
             selected: 0,
             theme: 'default',
             transitionEffect:'',
@@ -98,7 +116,7 @@
             }
         });
 
-		$('#datepicker1').datepicker({
+		$('.datepicker').datepicker({
 			todayHighlight: true,
 			format: 'dd MM yyyy',
 			orientation: "bottom",

@@ -43,6 +43,15 @@ return [
 		'title' => 'Konsultasi Hukum',
 		'url' => '/konsultasihukum'
 	],[
+		'icon' => 'fas fa-file',
+		'title' => 'Laporan',
+		'url' => 'javascript:;',
+		'caret' => true,
+		'sub_menu' => [[
+			'url' => '/daftarkonsultasihukum',
+			'title' => 'Daftar Konsultasi Hukum'
+		]]
+	],[
 		'icon' => 'fas fa-gavel',
 		'title' => 'Pendapat & Saran Hukum',
 		'url' => '/pendapatsaranhukum'

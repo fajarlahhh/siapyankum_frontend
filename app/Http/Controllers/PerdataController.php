@@ -57,6 +57,7 @@ class PerdataController extends Controller
 			$perdata->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$perdata->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$perdata->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$perdata->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$perdata->bantuan_hukum_jenis = 'perdata';
 			$perdata->operator = Auth::user()->pengguna_nama;
             $perdata->save();
@@ -115,6 +116,7 @@ class PerdataController extends Controller
 			$perdata->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$perdata->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$perdata->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$perdata->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$perdata->bantuan_hukum_jenis = 'perdata';
 			$perdata->operator = Auth::user()->pengguna_nama;
 			$perdata->save();
