@@ -8,16 +8,16 @@
 
 <!-- ================== BEGIN BASE CSS STYLE ================== -->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-<link href="/assets/css/app.css" rel="stylesheet" />
-<link href="/assets/css/jqueryui/jquery-ui.min.css" rel="stylesheet" />
-<link href="/assets/css/default/style.min.css" rel="stylesheet" />
-<link href="/assets/css/default/style-responsive.min.css" rel="stylesheet" />
-<link href="/assets/css/default/theme/default.css" rel="stylesheet" id="theme" />
-<link href="/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+<link href="{{ asset('/assets/css/app.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/css/jqueryui/jquery-ui.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/css/default/style.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/css/default/style-responsive.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/css/default/theme/default.css" rel="styl') }}esheet" id="theme" />
+<link href="{{ asset('/assets/plugins/gritter/css/jquery.gritter.css') }}" rel="stylesheet" />
 <!-- ================== END BASE CSS STYLE ================== -->
 
 <!-- ================== BEGIN BASE JS ================== -->
-<script src="/assets/plugins/pace/pace.min.js"></script>
+<script src="{{ asset('/assets/plugins/pace/pace.min.js') }}"></script>
 <!-- ================== END BASE JS ================== -->
 <style type="text/css">
 	.numbering{

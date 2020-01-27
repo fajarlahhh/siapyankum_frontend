@@ -62,9 +62,5 @@ return [
 			'url' => '/dataperaturan',
 			'title' => 'Data Peraturan'
 		]]
-	],[
-		'icon' => 'fas fa-users',
-		'title' => 'Pengguna',
-		'url' => '/pengguna'
 	]]
 ];

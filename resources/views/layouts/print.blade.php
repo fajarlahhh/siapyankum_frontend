@@ -9,14 +9,14 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
-	<link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-	<link href="/assets/css/default/style.min.css" rel="stylesheet" />
-	<link href="/assets/css/default/style-responsive.min.css" rel="stylesheet" />
-	<link href="/assets/css/default/theme/default.css" rel="stylesheet" id="theme" />
+	<link href="{{ asset('/assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('/assets/css/default/style.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('/assets/css/default/style-responsive.min.css') }}" rel="stylesheet" />
+	<link href="{{ asset('/assets/css/default/theme/default.css') }}" rel="stylesheet" id="theme" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 
 	<!-- ================== BEGIN BASE JS ================== -->
-	<script src="/assets/plugins/pace/pace.js"></script>
+	<script src="{{ asset('/assets/plugins/pace/pace.js') }}"></script>
 	<!-- ================== END BASE JS ================== -->
 	<style type="text/css">
 		.numbering{
@@ -39,7 +39,7 @@
 @endphp
 <body class="bg-white">
 	<div class="text-center">
-		<img src="/assets/img/logo/favicon.png" class="width-100" alt="">
+		<img src="{{ asset('/assets/img/logo/favicon.png" class="width-100" alt="">
 	</div>
 	
 	@yield('content')

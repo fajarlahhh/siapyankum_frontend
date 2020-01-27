@@ -3,7 +3,7 @@
 @section('title', ' | Login')
 
 @push('css')
-	<link href="/assets/plugins/parsleyjs/src/parsley.css" rel="stylesheet" />
+	<link href="{{ asset('/assets/plugins/parsleyjs/src/parsley.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -55,8 +55,8 @@
 @endsection
 
 @push('scripts')
-	<script src="/assets/plugins/parsleyjs/dist/parsley.js"></script>
-	<script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
+	<script src="{{ asset('/assets/plugins/parsleyjs/dist/parsley.js') }}"></script>
+	<script src="{{ asset('/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 	<script>
 		$(document).ready(function() {
             @if(Session::get('alert'))
