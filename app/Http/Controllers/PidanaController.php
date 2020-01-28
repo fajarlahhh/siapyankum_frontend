@@ -57,20 +57,21 @@ class PidanaController extends Controller
 			$pidana->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$pidana->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$pidana->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$pidana->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$pidana->bantuan_hukum_jenis = 'pidana';
 			$pidana->operator = Auth::user()->pengguna_nama;
             $pidana->save();
 
             $proses = new BantuanHukumProses();
 			$proses->bantuan_hukum_id = $pidana->bantuan_hukum_id;
-			$proses->bantuan_hukum_proses_status = 'DALAM PROSES';
+			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
 			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 
 			return redirect($req->get('redirect')? $req->get('redirect'): 'pidana')
-			->with('swal_pesan', 'Berhasil menambah data pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil menambah data bantuan hukum pidana '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Tambah data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -115,11 +116,12 @@ class PidanaController extends Controller
 			$pidana->bantuan_hukum_judul = $req->get('bantuan_hukum_judul');
 			$pidana->bantuan_hukum_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$pidana->bantuan_hukum_laporan_nomor = $req->get('bantuan_hukum_laporan_nomor');
+			$pidana->bantuan_hukum_keterangan = $req->get('bantuan_hukum_keterangan');
 			$pidana->bantuan_hukum_jenis = 'pidana';
 			$pidana->operator = Auth::user()->pengguna_nama;
 			$pidana->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'pidana')
-			->with('swal_pesan', 'Berhasil mengedit data pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil mengedit data bantuan hukum pidana '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Edit data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -168,11 +170,11 @@ class PidanaController extends Controller
 			$proses->bantuan_hukum_id = $req->bantuan_hukum_id;
 			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
-			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
+			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_proses_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'pidana')
-			->with('swal_pesan', 'Berhasil menambah data proses pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil menambah data proses bantuan hukum pidana '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Proses data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -189,7 +191,7 @@ class PidanaController extends Controller
             $pidana = BantuanHukum::findOrFail($id);
 			$pidana->delete();
 			return response()->json([
-				'swal_pesan' => 'Berhasil menghapus data pendapat saran hukum '.$pidana->bantuan_hukum_laporan_nomor,
+				'swal_pesan' => 'Berhasil menghapus data bantuan hukum pidana '.$pidana->bantuan_hukum_laporan_nomor,
 				'swal_judul' => 'Hapus data',
 				'swal_tipe' =>'success',
 			]);
@@ -202,13 +204,13 @@ class PidanaController extends Controller
 		}
 	}
 
-	public function hapus_proses($id, $status)
+	public function hapus_proses($id, $status, $tanggal)
 	{
 		try{
-			$pidana = BantuanHukumProses::where('bantuan_hukum_id', $id)->where('bantuan_hukum_proses_status', $status)->delete();
+			$pidana = BantuanHukumProses::where('bantuan_hukum_id', $id)->where('bantuan_hukum_proses_status', $status)->where('bantuan_hukum_proses_tanggal', $tanggal)->delete();
 			$data = BantuanHukum::findOrFail($id);
 			return response()->json([
-				'swal_pesan' => 'Berhasil menghapus data proses pendapat saran hukum '.$data->bantuan_hukum_laporan_nomor.' dengan status '.$status,
+				'swal_pesan' => 'Berhasil menghapus data proses bantuan hukum pidana '.$data->bantuan_hukum_laporan_nomor.' dengan status '.$status,
 				'swal_judul' => 'Hapus data',
 				'swal_tipe' =>'success',
 			]);

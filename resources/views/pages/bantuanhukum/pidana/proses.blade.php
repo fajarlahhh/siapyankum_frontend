@@ -114,7 +114,7 @@
                                 <td>{!! $row->bantuan_hukum_proses_deskripsi !!}</td>
                                 <td>
                                     @if ($i == $jumlah)
-                                    <a href="javascript:;" onclick="hapus('{{ $row->bantuan_hukum_id }}', '{{ $row->bantuan_hukum_proses_status }}', '{{ $data->bantuan_hukum_laporan_nomor }}')" id='btn-del' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a>
+                                    <a href="javascript:;" onclick="hapus('{{ $row->bantuan_hukum_id }}', '{{ $row->bantuan_hukum_proses_status }}', '{{ $data->bantuan_hukum_laporan_nomor }}', '{{ $row->bantuan_hukum_proses_tanggal }}')" id='btn-del' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -172,10 +172,10 @@
 			autoclose: true
 		});
 
-		function hapus(id, status, nama) {
+		function hapus(id, status, nama, tanggal) {
 			swal({
 				title: 'Hapus Data',
-				text: 'Anda akan menghapus proses pendapat & saran hukum : ' + nama + ' dengan status : ' + status,
+				text: 'Anda akan menghapus proses bantuan hukum pidana : ' + nama + ' dengan status : ' + status,
 				icon: 'warning',
 				buttons: {
 					cancel: {
@@ -201,12 +201,12 @@
 					    }
 					});
 	          		$.ajax({
-	          			url: "/pidana/hapusproses/" + id + "/" + status,
+	          			url: "/pidana/hapusproses/" + id + "/" + status + "/" + tanggal,
 	          			type: "POST",
 	          			data: {
 	          				"_method": 'DELETE',
 	          			},
-	          			success: function(data){                            
+	          			success: function(data){
 	          				swal({
 						       	title: data['swal_judul'],
 						       	text: data['swal_pesan'],

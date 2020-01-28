@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/pendapatsaranhukum/proses/{id}', 'PendapatsaranhukumController@proses')->middleware(['role:administrator|user']);
 		Route::post('/pendapatsaranhukum/proses', 'PendapatsaranhukumController@do_proses')->middleware(['role:administrator|user'])->name('pendapatsaranhukum.proses');
 		Route::delete('/pendapatsaranhukum/hapus/{id}', 'PendapatsaranhukumController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/pendapatsaranhukum/hapusproses/{id}/{status}', 'PendapatsaranhukumController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/pendapatsaranhukum/hapusproses/{id}/{status}/{tanggal}', 'PendapatsaranhukumController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
     Route::group(['middleware' => ['role_or_permission:administrator|praperadilan']], function () {
@@ -83,7 +83,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/praperadilan/proses/{id}', 'PraperadilanController@proses')->middleware(['role:administrator|user']);
 		Route::post('/praperadilan/proses', 'PraperadilanController@do_proses')->middleware(['role:administrator|user'])->name('praperadilan.proses');
 		Route::delete('/praperadilan/hapus/{id}', 'PraperadilanController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/praperadilan/hapusproses/{id}/{status}', 'PraperadilanController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/praperadilan/hapusproses/{id}/{status}/{tanggal}', 'PraperadilanController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
     Route::group(['middleware' => ['role_or_permission:administrator|pidana']], function () {
@@ -95,7 +95,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/pidana/proses/{id}', 'PidanaController@proses')->middleware(['role:administrator|user']);
 		Route::post('/pidana/proses', 'PidanaController@do_proses')->middleware(['role:administrator|user'])->name('pidana.proses');
 		Route::delete('/pidana/hapus/{id}', 'PidanaController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/pidana/hapusproses/{id}/{status}', 'PidanaController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/pidana/hapusproses/{id}/{status}/{tanggal}', 'PidanaController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
     Route::group(['middleware' => ['role_or_permission:administrator|perdata']], function () {
@@ -107,7 +107,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/perdata/proses/{id}', 'PerdataController@proses')->middleware(['role:administrator|user']);
 		Route::post('/perdata/proses', 'PerdataController@do_proses')->middleware(['role:administrator|user'])->name('perdata.proses');
 		Route::delete('/perdata/hapus/{id}', 'PerdataController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/perdata/hapusproses/{id}/{status}', 'PerdataController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/perdata/hapusproses/{id}/{status}/{tanggal}', 'PerdataController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
     Route::group(['middleware' => ['role_or_permission:administrator|ptun']], function () {
@@ -119,7 +119,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/ptun/proses/{id}', 'PtunController@proses')->middleware(['role:administrator|user']);
 		Route::post('/ptun/proses', 'PtunController@do_proses')->middleware(['role:administrator|user'])->name('ptun.proses');
 		Route::delete('/ptun/hapus/{id}', 'PtunController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/ptun/hapusproses/{id}/{status}', 'PtunController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/ptun/hapusproses/{id}/{status}/{tanggal}', 'PtunController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
     Route::group(['middleware' => ['role_or_permission:administrator|agama']], function () {
@@ -131,7 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::get('/agama/proses/{id}', 'AgamaController@proses')->middleware(['role:administrator|user']);
 		Route::post('/agama/proses', 'AgamaController@do_proses')->middleware(['role:administrator|user'])->name('agama.proses');
 		Route::delete('/agama/hapus/{id}', 'AgamaController@hapus')->middleware(['role:administrator|user']);
-		Route::delete('/agama/hapusproses/{id}/{status}', 'AgamaController@hapus_proses')->middleware(['role:administrator|user']);
+		Route::delete('/agama/hapusproses/{id}/{status}/{tanggal}', 'AgamaController@hapus_proses')->middleware(['role:administrator|user']);
 	});
 
 	Route::prefix('konsultasihukum')->group(function () {
@@ -140,6 +140,11 @@ Route::group(['middleware' => ['auth']], function () {
 		Route::post('pesan', 'KonsultasihukumController@kirimPesan');
 		Route::get('/hapusaktif/{id}', 'KonsultasihukumController@hapusAktif')->name('hapusaktif');
 		Route::get('/detailaktif', 'KonsultasihukumController@getAktif')->name('detailaktif');
+	});
+
+	Route::prefix('daftarkonsultasihukum')->group(function () {
+		Route::get('/', 'KonsultasihukumController@laporan');
+		Route::post('/cetak', 'KonsultasihukumController@cetak');
 	});
 });
 

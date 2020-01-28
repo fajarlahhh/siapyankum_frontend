@@ -23,6 +23,17 @@ class KonsultasihukumController extends Controller
         return view('pages.konsultasihukum.index', ['data' => $user]);
     }
 
+    public function laporan()
+    {
+        return view('pages.daftarkonsultasihukum.index');
+    }
+
+    public function cetak(Request $req)
+    {
+        $data = DB::select("select a.*, b.pengguna_id pengguna_id, b.pengguna_nama pengguna_nama from chat a left join pengguna b on a.chat_dari=md5(b.pengguna_id) where date(a.created_at)='".date('Y-m-d', strtotime($req->tanggal))."'");
+        return view('pages.daftarkonsultasihukum.cetak', ['data' => $data, 'tanggal' => $req->tanggal]);
+    }
+
     public function getAktif(Request $req){
         return DB::select("select pengguna.pengguna_id, pengguna_nama, count(terbaca) as unread from (aktif left join pengguna on aktif.pengguna_id = md5(pengguna.pengguna_id)) LEFT JOIN chat ON pengguna.pengguna_id = chat.chat_dari where aktif.pengguna_id = '" . $req->id . "' group by pengguna_id, pengguna_nama");
     }
@@ -102,7 +113,7 @@ class KonsultasihukumController extends Controller
 
         $data = ['from' => $from, 'to' => $to];
         Pusher::trigger('my-channel', 'my-event', $data);
-        
+
         // $options = array(
         //     'cluster' => 'ap1',
         //     'forceTLS' => true,

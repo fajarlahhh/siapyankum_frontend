@@ -114,7 +114,7 @@
                                 <td>{!! $row->pendapat_saran_proses_deskripsi !!}</td>
                                 <td>
                                     @if ($i == $jumlah)
-                                    <a href="javascript:;" onclick="hapus('{{ $row->pendapat_saran_id }}', '{{ $row->pendapat_saran_proses_status }}', '{{ $data->pendapat_saran_laporan_nomor }}')" id='btn-del' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a>
+                                    <a href="javascript:;" onclick="hapus('{{ $row->pendapat_saran_id }}', '{{ $row->pendapat_saran_proses_status }}', '{{ $data->pendapat_saran_laporan_nomor }}', '{{ $row->pendapat_saran_proses_tanggal }}')" id='btn-del' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -206,7 +206,7 @@
 	          			data: {
 	          				"_method": 'DELETE',
 	          			},
-	          			success: function(data){                            
+	          			success: function(data){
 	          				swal({
 						       	title: data['swal_judul'],
 						       	text: data['swal_pesan'],

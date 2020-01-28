@@ -106,7 +106,7 @@
 	<script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<script>
-        $('#wysihtml5').wysihtml5({
+        $('.wysihtml5').wysihtml5({
             selected: 0,
             theme: 'default',
             transitionEffect:'',
@@ -118,7 +118,7 @@
             }
         });
 
-		$('#datepicker1').datepicker({
+		$('.datepicker').datepicker({
 			todayHighlight: true,
 			format: 'dd MM yyyy',
 			orientation: "bottom",

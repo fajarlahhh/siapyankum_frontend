@@ -64,14 +64,14 @@ class PerdataController extends Controller
 
             $proses = new BantuanHukumProses();
 			$proses->bantuan_hukum_id = $perdata->bantuan_hukum_id;
-			$proses->bantuan_hukum_proses_status = 'DALAM PROSES';
+			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
 			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 
 			return redirect($req->get('redirect')? $req->get('redirect'): 'perdata')
-			->with('swal_pesan', 'Berhasil menambah data pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil menambah data bantuan hukum perdata '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Tambah data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -121,7 +121,7 @@ class PerdataController extends Controller
 			$perdata->operator = Auth::user()->pengguna_nama;
 			$perdata->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'perdata')
-			->with('swal_pesan', 'Berhasil mengedit data pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil mengedit data bantuan hukum perdata '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Edit data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -170,11 +170,11 @@ class PerdataController extends Controller
 			$proses->bantuan_hukum_id = $req->bantuan_hukum_id;
 			$proses->bantuan_hukum_proses_status = $req->get('bantuan_hukum_proses_status');
 			$proses->bantuan_hukum_proses_deskripsi = $req->get('bantuan_hukum_proses_deskripsi');
-			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_tanggal'))->format('Y-m-d');
+			$proses->bantuan_hukum_proses_tanggal = Carbon::parse($req->get('bantuan_hukum_proses_tanggal'))->format('Y-m-d');
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'perdata')
-			->with('swal_pesan', 'Berhasil menambah data proses pendapat saran hukum '.$req->get('bantuan_hukum_judul'))
+			->with('swal_pesan', 'Berhasil menambah data proses bantuan hukum perdata '.$req->get('bantuan_hukum_judul'))
 			->with('swal_judul', 'Proses data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -191,7 +191,7 @@ class PerdataController extends Controller
             $perdata = BantuanHukum::findOrFail($id);
 			$perdata->delete();
 			return response()->json([
-				'swal_pesan' => 'Berhasil menghapus data pendapat saran hukum '.$perdata->bantuan_hukum_laporan_nomor,
+				'swal_pesan' => 'Berhasil menghapus data bantuan hukum perdata '.$perdata->bantuan_hukum_laporan_nomor,
 				'swal_judul' => 'Hapus data',
 				'swal_tipe' =>'success',
 			]);
@@ -204,13 +204,13 @@ class PerdataController extends Controller
 		}
 	}
 
-	public function hapus_proses($id, $status)
+	public function hapus_proses($id, $status, $tanggal)
 	{
 		try{
-			$perdata = BantuanHukumProses::where('bantuan_hukum_id', $id)->where('bantuan_hukum_proses_status', $status)->delete();
+			$perdata = BantuanHukumProses::where('bantuan_hukum_id', $id)->where('bantuan_hukum_proses_status', $status)->where('bantuan_hukum_proses_tanggal', $tanggal)->delete();
 			$data = BantuanHukum::findOrFail($id);
 			return response()->json([
-				'swal_pesan' => 'Berhasil menghapus data proses pendapat saran hukum '.$data->bantuan_hukum_laporan_nomor.' dengan status '.$status,
+				'swal_pesan' => 'Berhasil menghapus data proses bantuan hukum perdata '.$data->bantuan_hukum_laporan_nomor.' dengan status '.$status,
 				'swal_judul' => 'Hapus data',
 				'swal_tipe' =>'success',
 			]);

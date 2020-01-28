@@ -170,7 +170,7 @@ class PendapatsaranhukumController extends Controller
 			$proses->operator = Auth::user()->pengguna_nama;
             $proses->save();
 			return redirect($req->get('redirect')? $req->get('redirect'): 'pendapatsaranhukum')
-			->with('swal_pesan', 'Berhasil menambah data proses pendapat saran hukum '.$req->get('pendapat_saran_judul'))
+			->with('swal_pesan', 'Berhasil menambah data proses pendapat dan saran hukum '.$req->get('pendapat_saran_judul'))
 			->with('swal_judul', 'Proses data')
 			->with('swal_tipe', 'success');
 		}catch(\Exception $e){
@@ -200,13 +200,13 @@ class PendapatsaranhukumController extends Controller
 		}
 	}
 
-	public function hapus_proses($id, $status)
+	public function hapus_proses($id, $status, $tanggal)
 	{
 		try{
-			$pendapatsaranhukum = PendapatSaranProses::where('pendapat_saran_id', $id)->where('pendapat_saran_proses_status', $status)->delete();
+			$pendapatsaranhukum = PendapatSaranProses::where('pendapat_saran_id', $id)->where('pendapat_saran_proses_status', $status)->where('pendapat_saran_proses_tanggal', $tanggal)->delete();
 			$data = PendapatSaran::findOrFail($id);
 			return response()->json([
-				'swal_pesan' => 'Berhasil menghapus data proses pendapat saran hukum '.$data->pendapat_saran_laporan_nomor.' dengan status '.$status,
+				'swal_pesan' => 'Berhasil menghapus data proses pendapat dan saran hukum '.$data->pendapat_saran_laporan_nomor.' dengan status '.$status,
 				'swal_judul' => 'Hapus data',
 				'swal_tipe' =>'success',
 			]);

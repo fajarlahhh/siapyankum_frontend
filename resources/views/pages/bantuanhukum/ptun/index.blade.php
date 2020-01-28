@@ -20,11 +20,9 @@
 		<div class="panel-heading">
 			<div class="row">
                 <div class="col-md-4 col-lg-5 col-xl-3 col-xs-12">
-                	@role('user|administrator')
                     <div class="form-inline">
                         <a href="{{ route('ptun.tambah') }}" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Tambah</a>
                     </div>
-                    @endrole
                 </div>
                 <div class="col-md-8 col-lg-7 col-xl-9 col-xs-12">
                 	<form action="{{ route('ptun') }}" method="GET" id="frm-cari">
@@ -63,12 +61,12 @@
 					        <td>{{ \Carbon\Carbon::parse($row->bantuan_hukum_tanggal)->isoFormat('LL') }}</td>
 					        <td>
 								@if ($row->proses->count() > 0)
-								{{ $row->proses[0]->bantuan_hukum_proses_status }} - {{ $row->proses[0]->bantuan_hukum_proses_deskripsi }}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
+								{{ $row->proses[0]->bantuan_hukum_proses_status }} - {!! $row->proses[0]->bantuan_hukum_proses_deskripsi !!}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
 								@endif
 							</td>
 					        <td class="pull-right">
-                                <a href="/praperadilan/proses/{{ $row->bantuan_hukum_id }}" id='btn-del' class='btn btn-success btn-xs m-r-3'><i class='fas fa-paper-plane'></i> Ganti Status</a><br><br>
-                                <a href="/praperadilan/edit/{{ $row->bantuan_hukum_id }}" id='btn-del' class='btn btn-grey btn-xs m-r-3'><i class='fas fa-edit'></i> Edit Data</a>
+                                <a href="/ptun/proses/{{ $row->bantuan_hukum_id }}" id='btn-del' class='btn btn-success btn-xs m-r-3'><i class='fas fa-paper-plane'></i> Ganti Status</a><br><br>
+                                <a href="/ptun/edit/{{ $row->bantuan_hukum_id }}" id='btn-del' class='btn btn-grey btn-xs m-r-3'><i class='fas fa-edit'></i> Edit Data</a>
 	                            <a href="javascript:;" onclick="hapus('{{ $row->bantuan_hukum_id }}', '{{ $row->bantuan_hukum_laporan_nomor }}')" id='btn-del' class='btn btn-danger btn-xs'><i class='fas fa-trash'></i> Hapus</a>
 					        </td>
 				      	</tr>
@@ -99,7 +97,7 @@
 		function hapus(id, nama) {
 			swal({
 				title: 'Hapus Data',
-				text: 'Anda akan menghapus pendapat & saran hukum : ' + nama ,
+				text: 'Anda akan menghapus bantuan hukum ptun : ' + nama ,
 				icon: 'warning',
 				buttons: {
 					cancel: {

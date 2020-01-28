@@ -11,7 +11,7 @@
 	$sidebarTwo = (!empty($sidebarTwo)) ? $sidebarTwo : '';
 	$topMenu = (!empty($topMenu)) ? $topMenu : '';
 	$footer = true;
-	
+
 	$pageContainerClass = (!empty($topMenu)) ? 'page-with-top-menu ' : '';
 	$pageContainerClass .= (!empty($sidebarRight)) ? 'page-with-right-sidebar ' : '';
 	$pageContainerClass .= (!empty($sidebarLight)) ? 'page-with-light-sidebar ' : '';
@@ -20,13 +20,13 @@
 	$pageContainerClass .= (!empty($sidebarMinified)) ? 'page-sidebar-minified ' : '';
 	$pageContainerClass .= (!empty($sidebarTwo)) ? 'page-with-two-sidebar ' : '';
 	$pageContainerClass .= (!empty($contentFullHeight)) ? 'page-content-full-height ' : '';
-	
+
 	$contentClass = (!empty($contentFullWidth) || !empty($contentFullHeight)) ? 'content-full-width ' : '';
 	$contentClass .= (!empty($contentInverseMode)) ? 'content-inverse-mode ' : '';
 @endphp
-<body class="{{ $bodyClass }}">
+<body class="{{ $bodyClass }}" style="background-image: url(../assets/img/login-bg/wallpaper.jpg) no-repeat center #eee;">
 	@include('frontend.includes.component.page-loader')
-	
+
 	<div id="page-container" class="page-container fade page-without-sidebar gradient-enabled {{ $pageContainerClass }}">
 		<div id="content" class="content {{ $contentClass }}">
 			<div class="row">
@@ -44,7 +44,7 @@
 			<hr>
 			@yield('content')
 		</div>
-		
+
 		@includeWhen($footer, 'frontend.includes.footer')
 	</div>
 	@include('frontend.includes.page-js')

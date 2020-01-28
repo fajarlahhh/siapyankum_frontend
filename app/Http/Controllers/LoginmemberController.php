@@ -65,6 +65,10 @@ class LoginmemberController extends Controller
             $pengguna->pengguna_sandi = Hash::make(123456);
             $pengguna->pengguna_admin = 0;
             $pengguna->save();
+        }else{
+			$pengguna = Pengguna::findOrFail($req->get($req->uid));
+            $pengguna->pengguna_nama = $req->nama;
+            $pengguna->save();
         }
 
         $remember = true;

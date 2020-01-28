@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class="control-label">Judul</label>
                     <input class="form-control" type="text" name="bantuan_hukum_judul" value="{{ $aksi == 'Edit'? $data->bantuan_hukum_judul: old('bantuan_hukum_judul') }}" required data-parsley-minlength="1" data-parsley-maxlength="250" autocomplete="off"  />
-				</div>
+                </div>
 				<div class="form-group">
 					<label class="control-label">Keterangan</label>
 					<textarea class="textarea form-control wysihtml5" name="bantuan_hukum_keterangan" rows="12">
@@ -106,7 +106,7 @@
 	<script src="/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<script>
-        $('#wysihtml5').wysihtml5({
+        $('.wysihtml5').wysihtml5({
             selected: 0,
             theme: 'default',
             transitionEffect:'',
@@ -118,7 +118,7 @@
             }
         });
 
-		$('#datepicker1').datepicker({
+		$('.datepicker').datepicker({
 			todayHighlight: true,
 			format: 'dd MM yyyy',
 			orientation: "bottom",

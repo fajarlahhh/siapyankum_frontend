@@ -61,7 +61,7 @@
 					        <td>{{ \Carbon\Carbon::parse($row->bantuan_hukum_tanggal)->isoFormat('LL') }}</td>
 					        <td>
 								@if ($row->proses->count() > 0)
-								{{ $row->proses[0]->bantuan_hukum_proses_status }} - {{ $row->proses[0]->bantuan_hukum_proses_deskripsi }}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
+								{{ $row->proses[0]->bantuan_hukum_proses_status }} - {!! $row->proses[0]->bantuan_hukum_proses_deskripsi !!}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
 								@endif
 							</td>
 					        <td class="pull-right">
@@ -97,7 +97,7 @@
 		function hapus(id, nama) {
 			swal({
 				title: 'Hapus Data',
-				text: 'Anda akan menghapus pendapat & saran hukum : ' + nama ,
+				text: 'Anda akan menghapus bantuan hukum pra peradilan : ' + nama ,
 				icon: 'warning',
 				buttons: {
 					cancel: {
