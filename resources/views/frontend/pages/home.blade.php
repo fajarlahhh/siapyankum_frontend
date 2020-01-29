@@ -21,7 +21,7 @@
             </a>
             <a href="/frontend/pendapatsaran" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center btn btn-danger btn-lg" style="line-height: 40px;">
                 <i style="font-size: 3rem;" class="fa fa-hands-helping fal"></i>
-                <h5 class="text-light">Pendapat & Saran Hukum</h5>
+                <h5 class="text-light">Pendapat &<br>Saran Hukum</h5>
             </a>
         </div>
         <div class="col-12 text-center">

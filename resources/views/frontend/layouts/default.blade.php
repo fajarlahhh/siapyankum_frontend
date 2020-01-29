@@ -24,7 +24,14 @@
 	$contentClass = (!empty($contentFullWidth) || !empty($contentFullHeight)) ? 'content-full-width ' : '';
 	$contentClass .= (!empty($contentInverseMode)) ? 'content-inverse-mode ' : '';
 @endphp
-<body class="{{ $bodyClass }}" style="background-image: url(../assets/img/login-bg/wallpaper.jpg) no-repeat center #eee;">
+<body class="{{ $bodyClass }}" >
+        <img src="/assets/img/login-bg/wallpaper.png" style="position: absolute;
+        padding-right: 10px;
+        padding-left: 10px;
+        top: 120px !important;
+        width: 100%;
+        height: auto;
+        opacity: 0.1; z-index: -1;">
 	@include('frontend.includes.component.page-loader')
 
 	<div id="page-container" class="page-container fade page-without-sidebar gradient-enabled {{ $pageContainerClass }}">
@@ -40,8 +47,27 @@
 				<div class="col-3 col-sm-3 col-xs-3 col-md-3 col-lg-3 col-xl-3 text-center">
 					<img src="/assets/img/logo/ntb.png" height="60">
 				</div>
-			</div>
-			<hr>
+				<div class="col-12">
+                    <hr>
+                    <div class="pull-right">
+                        @if (Auth::user())
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <small>Hai, {{ Auth::user()->pengguna_nama }}</small>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="{{ route('konsultasilogout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Log Out') }}</a>
+
+                                <form id="logout-form" action="{{ route('konsultasilogout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <br>
 			@yield('content')
 		</div>
 

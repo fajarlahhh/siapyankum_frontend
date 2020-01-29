@@ -7,7 +7,8 @@
             </div>
         </div>
         <br>
-        <a href="/frontend" class="btn btn-lg btn-primary">Kembali</a>
-        <a href="/frontend/konsultasihukum" class="btn btn-lg btn-success">Refresh</a>
+        <div class="text-center">
+            <a href="/frontend" class="btn btn-sm btn-primary">Kembali</a>
+        </div>
     </div>
 @endsection

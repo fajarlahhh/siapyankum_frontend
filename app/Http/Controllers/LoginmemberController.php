@@ -58,15 +58,16 @@ class LoginmemberController extends Controller
          	    'nama.required'  => 'Nama tidak boleh kosong'
         	]
         );
-        if(Pengguna::find($req->uid) == null){
+        if(!Pengguna::find($req->uid)){
             $pengguna = new Pengguna();
             $pengguna->pengguna_id = $req->uid;
             $pengguna->pengguna_nama = $req->nama;
             $pengguna->pengguna_sandi = Hash::make(123456);
             $pengguna->pengguna_admin = 0;
             $pengguna->save();
+			$pengguna->assignRole('member');
         }else{
-			$pengguna = Pengguna::findOrFail($req->get($req->uid));
+			$pengguna = Pengguna::findOrFail($req->uid);
             $pengguna->pengguna_nama = $req->nama;
             $pengguna->save();
         }
@@ -82,5 +83,16 @@ class LoginmemberController extends Controller
     private function username()
     {
         return 'pengguna_id';
+    }
+
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->flush();
+
+        $request->session()->regenerate();
+
+        return redirect('/frontend');
     }
 }
