@@ -45,10 +45,10 @@
 
         $.ajax({
             type: "get",
-            url: "notif" ,
+            url: "/notif" ,
             cache: false,
             success: function (data) {
-                $('#pending').html(data);
+                $('#pending-notif').html(data);
             }
         });
 	});

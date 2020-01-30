@@ -25,7 +25,7 @@
         <li class="">
             <a href="/konsultasihukum" data-toggle="" class="f-s-14">
                 <i class="fa fa-comments"></i>
-                <span class="label" id="pending">0</span>
+                <span class="label" id="pending-notif">0</span>
             </a>
         </li>
 		<li class="dropdown navbar-user">
