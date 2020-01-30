@@ -25,7 +25,7 @@
             </a>
         </div>
         <div class="col-12 text-center">
-            <a href="/frontend/konsultasihukum" class="text-center btn btn-primary btn-lg mt-2" style="line-height: 40px;">
+            <a href="/frontend/konsultasihukum" class="text-center btn btn-primary btn-lg mt-2 f-s-14" style="line-height: 40px;">
                 <i style="font-size: 3rem;" class="fa fa-comments fal"></i>
                 <h5 class="text-light">Konsultasi Hukum</h5>
             </a>

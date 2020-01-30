@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['role:administrator']], function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::get('/gantisandi', 'PenggunaController@ganti_sandi')->name('gantisandi');
+        Route::get('/notif', 'DashboardController@notif');
 
     });
     Route::group(['middleware' => ['role_or_permission:administrator|pengguna']], function () {

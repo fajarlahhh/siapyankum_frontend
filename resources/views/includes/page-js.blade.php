@@ -4,6 +4,7 @@
 <script src="{{ asset('/assets/plugins/sweetalert/sweetalert.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/gritter/js/jquery.gritter.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}"></script>
+<script src="https://js.pusher.com/5.0/pusher.min.js"></script>
 
 <script>
 	$(document).ready(function() {
@@ -26,7 +27,30 @@
 				class_name: 'my-sticky-class'
 			});
 		}, 1000);
-	    @endif
+        @endif
+
+
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('d93e7eade798d00e7755', {
+            cluster: 'ap1',
+            forceTLS: true
+        });
+
+        var channel = pusher.subscribe('my-channel');
+        channel.bind('my-event', function (data) {
+            var pending = parseInt($('#pending').html());
+            $('#pending').html(pending + 1);
+        });
+
+        $.ajax({
+            type: "get",
+            url: "notif" ,
+            cache: false,
+            success: function (data) {
+                $('#pending').html(data);
+            }
+        });
 	});
 
 </script>

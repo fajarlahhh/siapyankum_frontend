@@ -16,10 +16,7 @@ class KonsultasihukumController extends Controller
 {
     public function index()
     {
-        $user = DB::select("select pengguna.pengguna_id, pengguna_nama, count(terbaca) as unread, aktif.created_at
-        from (aktif left join pengguna on aktif.pengguna_id = md5(pengguna.pengguna_id)) LEFT JOIN chat ON pengguna.pengguna_id = chat.chat_dari and terbaca = 0 and chat.chat_kepada = '" . Auth::id() . "'
-        where pengguna_admin = 0
-        group by pengguna_id, pengguna_nama, aktif.created_at order by aktif.created_at asc");
+        $user = DB::select("select pengguna.pengguna_id, pengguna_nama, (select count(*) from chat where terbaca = 0 and chat_kepada=MD5('admin')) unread, aktif.created_at from aktif left join pengguna on aktif.pengguna_id = md5(pengguna.pengguna_id)where pengguna_admin = 0 group by pengguna_id, pengguna_nama, aktif.created_at order by aktif.created_at asc");
         return view('pages.konsultasihukum.index', ['data' => $user]);
     }
 
@@ -75,7 +72,7 @@ class KonsultasihukumController extends Controller
 
     public function terimaPesan($penerima, $pengirim, $aktif = '')
     {
-        Chat::where(['chat_dari' => $pengirim, 'chat_kepada' => $penerima])->update(['terbaca' => 1]);
+        Chat::where(['chat_dari' => $penerima, 'chat_kepada' => $pengirim])->update(['terbaca' => 1]);
 
         $messages = Chat::where(function ($query) use ($pengirim, $penerima) {
             $query->where('chat_dari', $pengirim)->where('chat_kepada', $penerima);
