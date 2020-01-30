@@ -3,23 +3,21 @@
 @section('title', ' | Peraturan')
 
 @php
-    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');   
+    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');
 @endphp
 
 @section('content')
-    <h4 class="text-center">Peraturan<br><small>{{ ucFirst($jenis) }}</small></h4>
-    <br>
-    <label class="text-justify">{{ $data->peraturan_judul }}</label>
+    <h5 class="text-center"><small>Peraturan<br><b>{{ ucFirst($jenis) }}</b></small><br>{{ $data->peraturan_judul }}</h5>
     <link rel="stylesheet" href="{{ "/assets/pdf/css/viewer.css" }}">
     <link rel="resource" type="application/l10n" href="{{ "/assets/pdf/locale/locale.properties" }}">
     <script type="text/javascript">
-        var pdf = '{{ "/".$data->peraturan_file }}';	
+        var pdf = '{{ "/".$data->peraturan_file }}';
         var worker = '{{ "/assets/pdf/js/pdf.worker.js" }}';
     </script>
     <script src="{{ '/assets/pdf/js/pdf.js' }}"></script>
     <script src="{{ '/assets/pdf/js/viewer.js' }}"></script>
-    
-    <div id="outerContainer" style="height: 500px" >
+
+    <div id="outerContainer" style="height: 420px; background-image: url(/assets/pdf/images/texture.png);" >
 
         <div id="sidebarContainer" class="hidden">
         <div id="toolbarSidebar">
@@ -367,6 +365,7 @@
     <div id="printContainer"></div>
     <br>
     <div class="text-center">
-        <a href="/frontend/peraturan/{{ $jenis_id }}" class="text-center btn btn-inverse">Kembali</a>
+        <a href="{{ "/frontend/peraturan/download/".$data->peraturan_id }}" class="text-center btn btn-xs btn-success">Download</a>
+        <a href="/frontend/peraturan/{{ $jenis_id }}" class="text-center btn btn-xs btn-inverse">Kembali</a>
     </div>
 @endsection

@@ -3,11 +3,11 @@
 @section('title', ' | Bantuan Hukum')
 
 @php
-    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');   
+    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');
 @endphp
 
 @section('content')
-    <h4 class="text-center">Bantuan Hukum<br><small>{{ $jenis_ }}</small></h4>
+    <h4 class="text-center"><small>Bantuan Hukum</small><br>{{ $jenis_ }}</h4>
     <br>
     <div class="row">
         <div class="col-12 mb-2">
@@ -21,25 +21,18 @@
             </form>
         </div>
         <div class="col-12">
-            <table class="table">
-                <tbody>
-                    @foreach ($data as $index => $row)
-                    <tr>
-                        <td><label>{{ ++$i }}</label></td>
-                        <td>
-                            <a href="/frontend/bantuanhukum/{{ $jenis }}/{{ $row->bantuan_hukum_id }}" class="text-justify">
-                                <h5>{{ $row->bantuan_hukum_laporan_nomor }} -  {{ $row->bantuan_hukum_judul }}
-                                    <br>
-                                    <small>Status : {{ $row->proses->first()->bantuan_hukum_proses_status }}
-                                        <br>Tanggal : {{ \Carbon\Carbon::parse($row->proses->first()->created_at)->isoFormat('LL') }}
-                                    </small>
-                                </h5>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="widget-list widget-list-rounded m-b-30" data-id="widget">
+                @foreach ($data as $index => $row)
+                <a href="/frontend/bantuanhukum/{{ $jenis }}/{{ $row->bantuan_hukum_id }}" class="widget-list-item bg-{{ $warna[rand(0, 11)] }}">
+                    <div class="widget-list-content">
+                        <h4 class="widget-list-title"><b>{{ $row->bantuan_hukum_laporan_nomor }}</b> <br> {{ $row->bantuan_hukum_judul }}</h4>
+                    </div>
+                    <div class="widget-list-action text-right">
+                        <i class="fa fa-angle-right fa-lg text-muted"></i>
+                    </div>
+                </a>
+                @endforeach
+            </div>
         </div>
         <div class="col-12">
             {{ $data->links() }}
@@ -54,7 +47,7 @@
 @endsection
 
 @push('scripts')
-    <script>        
+    <script>
 		$("#basic-addon2").click(function() {
 		     $("#frm-cari").submit();
 		});

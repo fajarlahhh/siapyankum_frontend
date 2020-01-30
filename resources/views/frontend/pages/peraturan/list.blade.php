@@ -7,7 +7,7 @@
 @endphp
 
 @section('content')
-    <h4 class="text-center">Peraturan<br><small>{{ ucFirst($jenis) }}</small></h4>
+    <h4 class="text-center"><small>Peraturan</small><br>{{ ucFirst($jenis) }}</h4>
     <br>
     <div class="row">
         <div class="col-12 mb-2">
@@ -21,16 +21,18 @@
             </form>
         </div>
         <div class="col-12">
-            <table class="table">
-                <tbody>
-                    @foreach ($data as $index => $row)
-                    <tr>
-                        <td><label>{{ ++$i }}</label></td>
-                        <td><a href="/frontend/peraturan/tampil/{{ $jenis_id }}/{{ $row->peraturan_id }}" class="text-justify"><h5>{{ $row->peraturan_judul }}</h5></a></td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="widget-list widget-list-rounded m-b-30" data-id="widget">
+                @foreach ($data as $index => $row)
+                <a href="/frontend/peraturan/tampil/{{ $jenis_id }}/{{ $row->peraturan_id }}" class="widget-list-item bg-{{ $warna[rand(0, 11)] }}">
+                    <div class="widget-list-content">
+                        <h4 class="widget-list-title">{{ $row->peraturan_judul }}</h4>
+                    </div>
+                    <div class="widget-list-action text-right">
+                        <i class="fa fa-angle-right fa-lg text-muted"></i>
+                    </div>
+                </a>
+                @endforeach
+            </div>
         </div>
         <div class="col-12">
             {{ $data->links() }}

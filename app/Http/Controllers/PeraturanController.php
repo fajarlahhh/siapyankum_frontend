@@ -55,26 +55,21 @@ class PeraturanController extends Controller
             $file = $req->file('peraturan_file');
 
             $ext = $file->getClientOriginalExtension();
-            $nama_file = $req->get('peraturan_judul').".".$ext;
+            $nama_file = $req->get('peraturan_judul').Str::random().".".$ext;
             $file->move(public_path('upload/peraturan'), $nama_file);
 
-			$peraturan = new Peraturan();
-			$peraturan->peraturan_judul = $req->get('peraturan_judul');
-			$peraturan->peraturan_jenis_id = $req->get('peraturan_jenis_id');
-			$peraturan->peraturan_file = 'upload/peraturan/'.$nama_file;
-			$peraturan->operator = Auth::user()->pengguna_nama;
+            $peraturan = new Peraturan();
+            $peraturan->peraturan_judul = $req->get('peraturan_judul');
+            $peraturan->peraturan_jenis_id = $req->get('peraturan_jenis_id');
+            $peraturan->peraturan_file = 'upload/peraturan/'.$nama_file;
+            $peraturan->operator = Auth::user()->pengguna_nama;
             $peraturan->save();
 
-			return redirect($req->get('redirect')? $req->get('redirect'): 'dataperaturan')
-			->with('swal_pesan', 'Berhasil menambah data peraturan '.$req->get('peraturan_judul'))
-			->with('swal_judul', 'Tambah data')
-			->with('swal_tipe', 'success');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'dataperaturan')
+            ->with('swal_pesan', 'Berhasil menambah data peraturan '.$req->get('peraturan_judul'))
+            ->with('swal_judul', 'Tambah data')
+            ->with('swal_tipe', 'success');
 		}catch(\Exception $e){
-            $file = $req->file('peraturan_file');
-
-            $ext = $file->getClientOriginalExtension();
-            $nama_file = $req->get('peraturan_judul').".".$ext;
-            unlink('peraturan/'.$nama_file);
 			return redirect($req->get('redirect')? $req->get('redirect'): 'dataperaturan')
 			->with('swal_pesan', $e->getMessage())
 			->with('swal_judul', 'Tambah data')

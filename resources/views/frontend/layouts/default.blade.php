@@ -68,7 +68,7 @@
                 </div>
             </div>
             <br>
-			@yield('content')
+                @yield('content')
 		</div>
 
 		@includeWhen($footer, 'frontend.includes.footer')

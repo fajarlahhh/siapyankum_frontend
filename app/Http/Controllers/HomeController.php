@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use ZipArchive;
 use App\Peraturan;
 use App\BantuanHukum;
 use App\LensaKegiatan;
@@ -22,7 +23,7 @@ class HomeController extends Controller
         return view('frontend.pages.bantuanhukum.home');
     }
 
-    public function bantuanhukum_list(Request $req, $jenis)
+    public function bantuanhukum_list($jenis, Request $req)
     {
         $bantuanhukum = BantuanHukum::with(['proses' => function($q) {
 			$q->orderBy('created_at', 'desc');
@@ -32,7 +33,7 @@ class HomeController extends Controller
 		$bantuanhukum->appends([
             'cari' => $req->cari
             ]);
-            
+
         switch ($jenis) {
             case 'praperadilan':
                 $jenis_ = "Pra Peradilan";
@@ -65,7 +66,7 @@ class HomeController extends Controller
             $bantuanhukum = BantuanHukum::with(['proses' => function($q) {
                 $q->orderBy('created_at', 'asc');
             }])->where('bantuan_hukum_id', $id)->where('bantuan_hukum_jenis', $jenis)->first();
-            
+
             switch ($jenis) {
                 case 'praperadilan':
                     $jenis_ = "Pra Peradilan";
@@ -91,6 +92,20 @@ class HomeController extends Controller
 		}catch(\Exception $e){
             return view('frontend.pages.eror', [
                 'header' => "Bantuan Hukum<br><small>".ucFirst($jenis)."</small>",
+                'pesan' => $e->getMessage()
+            ]);
+		}
+    }
+
+    public function peraturan_download($id)
+    {
+        try{
+            $data = Peraturan::findOrFail($id);
+            $zip_file = $data->peraturan_file;
+            return response()->download($zip_file);
+		}catch(\Exception $e){
+            return view('frontend.pages.eror', [
+                'header' => "Peraturan<br><small>".$id."</small>",
                 'pesan' => $e->getMessage()
             ]);
 		}
@@ -138,6 +153,20 @@ class HomeController extends Controller
 		}
     }
 
+    public function lensakegiatan_download($id)
+    {
+        try{
+            $data = LensaKegiatan::findOrFail($id);
+            $zip_file = $data->lensa_kegiatan_file;
+            return response()->download($zip_file);
+		}catch(\Exception $e){
+            return view('frontend.pages.eror', [
+                'header' => "Lensa Kegiatan<br><small>".$id."</small>",
+                'pesan' => $e->getMessage()
+            ]);
+		}
+    }
+
     public function lensakegiatan(Request $req)
     {
         $lensakegiatan = LensaKegiatan::orderBy('lensa_kegiatan_tanggal', 'desc')->where('lensa_kegiatan_judul', 'like', '%'.$req->cari.'%')->paginate(10);
@@ -149,7 +178,7 @@ class HomeController extends Controller
             'data' => $lensakegiatan
         ]);
     }
-    
+
     public function lensakegiatan_tampil($id)
     {
         try{
@@ -164,7 +193,7 @@ class HomeController extends Controller
             ]);
 		}
     }
-    
+
     public function pendapatsaran(Request $req)
     {
         $pendapatsaranhukum = PendapatSaran::with(['proses' => function($q) {

@@ -178,11 +178,13 @@ Route::prefix('frontend')->group(function () {
 		Route::get('/', 'HomeController@peraturan');
 		Route::get('/{jenis}', 'HomeController@peraturan_list');
 		Route::get('/tampil/{jenis}/{id}', 'HomeController@peraturan_tampil');
+		Route::get('/download/{id}', 'HomeController@peraturan_download');
 	});
 
 	Route::prefix('lensakegiatan')->group(function () {
 		Route::get('/', 'HomeController@lensakegiatan');
 		Route::get('/{id}', 'HomeController@lensakegiatan_tampil');
+		Route::get('/download/{id}', 'HomeController@lensakegiatan_download');
 	});
 
 	Route::prefix('pendapatsaran')->group(function () {

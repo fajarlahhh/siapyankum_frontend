@@ -3,7 +3,7 @@
 @section('title', ' | Peraturan')
 
 @php
-    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');   
+    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');
 @endphp
 
 @section('content')

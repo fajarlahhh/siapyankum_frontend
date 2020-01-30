@@ -3,22 +3,21 @@
 @section('title', ' | Lensa Kegiatan')
 
 @php
-    $warna = array('grey','purple','indigo','primary','info','yellow','warning','pink','danger','success','green','lime');   
+    $warna = array('grey','purple','indigo','primary','info','warning','pink','danger','success','green','lime');
 @endphp
 
 @section('content')
-    <h4 class="text-center">Lensa Kegiatan<br><small>{{ $data->lensa_kegiatan_judul }}</small></h4>
-    <br>
+    <h5 class="text-center"><small >Lensa Kegiatan</small><br>{{ $data->lensa_kegiatan_judul }}</h5>
     <link rel="stylesheet" href="{{ "/assets/pdf/css/viewer.css" }}">
     <link rel="resource" type="application/l10n" href="{{ "/assets/pdf/locale/locale.properties" }}">
     <script type="text/javascript">
-        var pdf = '{{ "/".$data->lensa_kegiatan_file }}';	
+        var pdf = '{{ "/".$data->lensa_kegiatan_file }}';
         var worker = '{{ "/assets/pdf/js/pdf.worker.js" }}';
     </script>
     <script src="{{ '/assets/pdf/js/pdf.js' }}"></script>
     <script src="{{ '/assets/pdf/js/viewer.js' }}"></script>
-    
-    <div id="outerContainer" style="height: 500px; background-image: url(/assets/pdf/images/texture.png);" >
+
+        <div id="outerContainer" style="height: 420px; background-image: url(/assets/pdf/images/texture.png);" >
 
         <div id="sidebarContainer" class="hidden">
         <div id="toolbarSidebar">
@@ -366,7 +365,7 @@
     <div id="printContainer"></div>
     <br>
     <div class="text-center">
-        <a href="{{ "/".$data->lensa_kegiatan_file }}" class="text-center btn btn-inverse">Download</a>
-        <a href="/frontend/lensakegiatan" class="text-center btn btn-inverse">Kembali</a>
+        <a href="{{ "/frontend/lensakegiatan/download/".$data->lensa_kegiatan_id }}" class="text-center btn btn-xs btn-success">Download</a>
+        <a href="/frontend/lensakegiatan" class="text-center btn btn-xs btn-inverse">Kembali</a>
     </div>
 @endsection

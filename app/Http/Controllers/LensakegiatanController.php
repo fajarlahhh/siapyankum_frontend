@@ -48,26 +48,21 @@ class LensakegiatanController extends Controller
             $file = $req->file('lensa_kegiatan_file');
 
             $ext = $file->getClientOriginalExtension();
-            $nama_file = $req->get('lensa_kegiatan_judul').".".$ext;
+            $nama_file = $req->get('lensa_kegiatan_judul').Str::random().".".$ext;
             $file->move(public_path('upload/lensakegiatan'), $nama_file);
 
-			$lensakegiatan = new LensaKegiatan();
-			$lensakegiatan->lensa_kegiatan_judul = $req->get('lensa_kegiatan_judul');
-			$lensakegiatan->lensa_kegiatan_tanggal = Carbon::parse($req->get('lensa_kegiatan_tanggal'))->format('Y-m-d');
-			$lensakegiatan->lensa_kegiatan_file = 'upload/lensakegiatan/'.$nama_file;
-			$lensakegiatan->operator = Auth::user()->pengguna_nama;
+            $lensakegiatan = new LensaKegiatan();
+            $lensakegiatan->lensa_kegiatan_judul = $req->get('lensa_kegiatan_judul');
+            $lensakegiatan->lensa_kegiatan_tanggal = Carbon::parse($req->get('lensa_kegiatan_tanggal'))->format('Y-m-d');
+            $lensakegiatan->lensa_kegiatan_file = 'upload/lensakegiatan/'.$nama_file;
+            $lensakegiatan->operator = Auth::user()->pengguna_nama;
             $lensakegiatan->save();
 
-			return redirect($req->get('redirect')? $req->get('redirect'): 'datalensakegiatan')
-			->with('swal_pesan', 'Berhasil menambah data lensa kegiatan '.$req->get('lensa_kegiatan_judul'))
-			->with('swal_judul', 'Tambah data')
-			->with('swal_tipe', 'success');
+            return redirect($req->get('redirect')? $req->get('redirect'): 'datalensakegiatan')
+            ->with('swal_pesan', 'Berhasil menambah data lensa kegiatan '.$req->get('lensa_kegiatan_judul'))
+            ->with('swal_judul', 'Tambah data')
+            ->with('swal_tipe', 'success');
 		}catch(\Exception $e){
-            $file = $req->file('lensa_kegiatan_file');
-
-            $ext = $file->getClientOriginalExtension();
-            $nama_file = $req->get('lensa_kegiatan_judul').".".$ext;
-            unlink('lensakegiatan/'.$nama_file);
 			return redirect($req->get('redirect')? $req->get('redirect'): 'datalensakegiatan')
 			->with('swal_pesan', $e->getMessage())
 			->with('swal_judul', 'Tambah data')
