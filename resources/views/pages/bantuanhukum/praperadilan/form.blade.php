@@ -40,7 +40,7 @@
                 </div>
 				<div class="form-group">
 					<label class="control-label">Tanggal</label>
-					<input type="text" readonly required class="form-control" id="datepicker1" name="bantuan_hukum_tanggal" placeholder="Tgl. Mulai" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->bantuan_hukum_tanggal: (old('bantuan_hukum_tanggal')? old('bantuan_hukum_tanggal'): now()))) }}"/>
+					<input type="text" readonly required class="form-control datepicker" name="bantuan_hukum_tanggal" placeholder="Tgl. Mulai" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->bantuan_hukum_tanggal: (old('bantuan_hukum_tanggal')? old('bantuan_hukum_tanggal'): now()))) }}"/>
 				</div>
                 <div class="form-group">
                     <label class="control-label">Judul</label>
@@ -67,7 +67,7 @@
 					</div>
 					<div class="form-group">
 						<label class="control-label">Tanggal</label>
-						<input type="text" readonly required class="form-control" id="datepicker1" name="bantuan_hukum_proses_tanggal" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->bantuan_hukum_proses_tanggal: (old('bantuan_hukum_proses_tanggal')? old('bantuan_hukum_proses_tanggal'): now()))) }}"/>
+						<input type="text" readonly required class="form-control datepicker" name="bantuan_hukum_proses_tanggal" value="{{ date('d F Y', strtotime($aksi == 'Edit'? $data->bantuan_hukum_proses_tanggal: (old('bantuan_hukum_proses_tanggal')? old('bantuan_hukum_proses_tanggal'): now()))) }}"/>
 					</div>
 					<div class="form-group">
 						<label class="control-label">Detail</label>
