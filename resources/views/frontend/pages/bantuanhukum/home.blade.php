@@ -3,7 +3,7 @@
 @section('title', ' | Bantuan Hukum')
 
 @section('content')
-    <h4 class="text-center">Bantuan Hukum</h4>
+    <h4 class="text-center text-light">Bantuan Hukum</h4>
     <div class="row">
         <a href="/frontend/bantuanhukum/praperadilan" class="col-12 col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12 text-center btn btn-grey btn-lg mb-2" style="line-height: 50px;">
             <h4 class="text-light">Pra Peradilan</h4>

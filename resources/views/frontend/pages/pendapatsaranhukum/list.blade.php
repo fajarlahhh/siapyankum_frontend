@@ -7,7 +7,7 @@
 @endphp
 
 @section('content')
-    <h4 class="text-center">Pendapat & Saran Hukum</h4>
+    <h4 class="text-center text-light">Pendapat & Saran Hukum</h4>
     <br>
     <div class="row">
         <div class="col-12 mb-2">
@@ -38,7 +38,7 @@
             {{ $data->links() }}
         </div>
         <div class="col-12 text-center">
-            <label>Jumlah Data : {{ $data->total() }}</label>
+            <label class=" text-light">Jumlah Data : {{ $data->total() }}</label>
         </div>
     </div>
     <div class="text-center">

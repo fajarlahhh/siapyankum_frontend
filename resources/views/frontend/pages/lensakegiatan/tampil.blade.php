@@ -7,7 +7,7 @@
 @endphp
 
 @section('content')
-    <h5 class="text-center"><small >Lensa Kegiatan</small><br>{{ $data->lensa_kegiatan_judul }}</h5>
+    <h5 class="text-center text-light"><small class=" text-light">Lensa Kegiatan</small><br>{{ $data->lensa_kegiatan_judul }}</h5>
     <link rel="stylesheet" href="{{ "/assets/pdf/css/viewer.css" }}">
     <link rel="resource" type="application/l10n" href="{{ "/assets/pdf/locale/locale.properties" }}">
     <script type="text/javascript">

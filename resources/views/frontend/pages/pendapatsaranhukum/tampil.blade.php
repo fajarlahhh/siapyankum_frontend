@@ -7,7 +7,7 @@
 @endphp
 
 @section('content')
-    <h4 class="text-center">Pendapat & Saran Hukum</h4>
+    <h4 class="text-center text-light">Pendapat & Saran Hukum</h4>
     <br>
     <div class="note note-{{ $warna[rand(0, 11)] }} m-b-15" style="padding: 0px !important">
         <table class="table">

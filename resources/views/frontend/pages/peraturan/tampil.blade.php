@@ -7,7 +7,7 @@
 @endphp
 
 @section('content')
-    <h5 class="text-center"><small>Peraturan<br><b>{{ ucFirst($jenis) }}</b></small><br>{{ $data->peraturan_judul }}</h5>
+    <h5 class="text-center  text-light"><small>Peraturan<br><b>{{ ucFirst($jenis) }}</b></small><br>{{ $data->peraturan_judul }}</h5>
     <link rel="stylesheet" href="{{ "/assets/pdf/css/viewer.css" }}">
     <link rel="resource" type="application/l10n" href="{{ "/assets/pdf/locale/locale.properties" }}">
     <script type="text/javascript">
@@ -17,7 +17,7 @@
     <script src="{{ '/assets/pdf/js/pdf.js' }}"></script>
     <script src="{{ '/assets/pdf/js/viewer.js' }}"></script>
 
-    <div id="outerContainer" style="height: 420px; background-image: url(/assets/pdf/images/texture.png);" >
+    <div id="outerContainer" style="height: 350px; background-image: url(/assets/pdf/images/texture.png);" >
 
         <div id="sidebarContainer" class="hidden">
         <div id="toolbarSidebar">
