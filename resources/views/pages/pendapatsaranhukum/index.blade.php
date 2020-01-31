@@ -61,7 +61,7 @@
 					        <td>{{ \Carbon\Carbon::parse($row->pendapat_saran_tanggal)->isoFormat('LL') }}</td>
 					        <td>
 								@if ($row->proses->count() > 0)
-								{{ $row->proses[0]->pendapat_saran_proses_status }} - {{ $row->proses[0]->pendapat_saran_proses_deskripsi }}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
+								{{ $row->proses[0]->pendapat_saran_proses_status }} - {!! $row->proses[0]->pendapat_saran_proses_deskripsi !!}<br><small>{{ $row->proses[0]->operator.', '.\Carbon\Carbon::parse($row->proses[0]->created_at)->isoFormat('LL') }}</small>
 								@endif
 							</td>
 					        <td class="pull-right">
