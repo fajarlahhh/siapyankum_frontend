@@ -31,7 +31,7 @@ class LoginmemberController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/frontend/konsultasihukum';
+    protected $redirectTo = '/konsultasihukum';
 
     /**
      * Create a new controller instance.
@@ -75,7 +75,7 @@ class LoginmemberController extends Controller
         $remember = true;
 
         if (Auth::attempt(['pengguna_id' => $req->uid, 'password' => 123456], $remember)) {
-            return redirect("/frontend/konsultasihukum");
+            return redirect("/konsultasihukum");
         }
         return Redirect::back();
     }
@@ -93,6 +93,6 @@ class LoginmemberController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/frontend');
+        return redirect('');
     }
 }
