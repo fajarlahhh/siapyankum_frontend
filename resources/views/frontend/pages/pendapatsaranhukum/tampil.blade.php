@@ -39,6 +39,6 @@
     </div>
     <br>
     <div class="text-center">
-        <a href="/frontend/pendapatsaran" class="text-center btn btn-inverse">Kembali</a>
+        <a href="/pendapatsaran" class="text-center btn btn-inverse">Kembali</a>
     </div>
 @endsection

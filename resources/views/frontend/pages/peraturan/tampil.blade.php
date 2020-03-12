@@ -365,7 +365,7 @@
     <div id="printContainer"></div>
     <br>
     <div class="text-center">
-        <a href="{{ "/frontend/peraturan/download/".$data->peraturan_id }}" class="text-center btn btn-xs btn-success">Download</a>
-        <a href="/frontend/peraturan/{{ $jenis_id }}" class="text-center btn btn-xs btn-inverse">Kembali</a>
+        <a href="{{ "/peraturan/download/".$data->peraturan_id }}" class="text-center btn btn-xs btn-success">Download</a>
+        <a href="/peraturan/{{ $jenis_id }}" class="text-center btn btn-xs btn-inverse">Kembali</a>
     </div>
 @endsection

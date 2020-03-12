@@ -11,7 +11,7 @@
     <br>
     <div class="row">
         <div class="col-12 mb-2">
-            <form action="/frontend/peraturan/{{ $jenis_id }}" method="GET" id="frm-cari">
+            <form action="/peraturan/{{ $jenis_id }}" method="GET" id="frm-cari">
                 <div class="input-group">
                     <input type="text" class="form-control cari" name="cari" placeholder="Cari" aria-label="Sizing example input" autocomplete="off" aria-describedby="basic-addon2" value="{{ $cari }}">
                     <div class="input-group-append">
@@ -23,7 +23,7 @@
         <div class="col-12">
             <div class="widget-list widget-list-rounded m-b-30" data-id="widget">
                 @foreach ($data as $index => $row)
-                <a href="/frontend/peraturan/tampil/{{ $jenis_id }}/{{ $row->peraturan_id }}" class="widget-list-item bg-{{ $warna[rand(0, 11)] }}">
+                <a href="/peraturan/tampil/{{ $jenis_id }}/{{ $row->peraturan_id }}" class="widget-list-item bg-{{ $warna[rand(0, 11)] }}">
                     <div class="widget-list-content">
                         <h4 class="widget-list-title">{{ $row->peraturan_judul }}</h4>
                     </div>
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="text-center">
-        <a href="/frontend/peraturan" class="text-center btn btn-inverse">Kembali</a>
+        <a href="/peraturan" class="text-center btn btn-inverse">Kembali</a>
     </div>
 @endsection
 

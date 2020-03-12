@@ -365,7 +365,7 @@
     <div id="printContainer"></div>
     <br>
     <div class="text-center">
-        <a href="{{ "/frontend/lensakegiatan/download/".$data->lensa_kegiatan_id }}" class="text-center btn btn-xs btn-success">Download</a>
-        <a href="/frontend/lensakegiatan" class="text-center btn btn-xs btn-inverse">Kembali</a>
+        <a href="{{ "/lensakegiatan/download/".$data->lensa_kegiatan_id }}" class="text-center btn btn-xs btn-success">Download</a>
+        <a href="/lensakegiatan" class="text-center btn btn-xs btn-inverse">Kembali</a>
     </div>
 @endsection

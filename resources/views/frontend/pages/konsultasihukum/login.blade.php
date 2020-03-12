@@ -169,7 +169,7 @@
                     <div class="card-header">{{ __('Registrasi') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="/frontend/konsultasihukum/login">
+                        <form method="POST" action="/konsultasihukum/login">
                             @csrf
 
                             <div class="form-group row">

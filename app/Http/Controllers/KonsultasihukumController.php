@@ -37,7 +37,7 @@ class KonsultasihukumController extends Controller
 
     public function member(){
         if(!Auth::check())
-            return redirect('/frontend/konsultasihukum/login');
+            return redirect('/konsultasihukum/login');
 
         $penerima = md5(Auth::id());
         $pengirim = md5('admin');

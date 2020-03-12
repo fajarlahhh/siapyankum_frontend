@@ -8,7 +8,7 @@
         </div>
         <br>
         <div class="text-center">
-            <a href="/frontend" class="btn btn-sm btn-primary">Kembali</a>
+            <a href="/" class="btn btn-sm btn-primary">Kembali</a>
         </div>
     </div>
 @endsection
